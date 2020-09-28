@@ -3,21 +3,20 @@ package game;
 public class Beaker {
 
     // Variables
-    int numberOfDie;
+    private Die[] die;
+    private int[] results;
 
-    Die[] die;
-    int[] results;
-
-    boolean hasRolled;
+    private boolean hasRolled;
 
     // Constructor: Takes number of die in beaker as argument
     public Beaker(int n) {
 
-        // Set number of dice
-        this.numberOfDie = n;
+        // Assign arrays with right length
+        this.die = new Die[n];
+        this.results = new int[n];
 
         // Make new instance of die for each number of dice
-        for (int i = 0; i < this.numberOfDie; i++) {
+        for (int i = 0; i < n; i++) {
             this.die[i] = new Die();
         }
     }
@@ -27,7 +26,7 @@ public class Beaker {
 
         // Roll each die
         for (int i = 0; i < this.die.length; i++) {
-            results[i] = die[i].roll();
+            this.results[i] = die[i].roll();
         }
 
         // Set hasRolled to true
