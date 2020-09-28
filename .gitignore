@@ -7,5 +7,5 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 # Folder with .class files and .class-files
-out/
+/out/
 .class
