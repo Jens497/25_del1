@@ -3,14 +3,14 @@ import java.lang.Math;
 
 public class Die {
 
-    static int faceValue;
+    int faceValue;
 
-    public static int roll(){
-        faceValue = (int)(Math.random()*6) + 1;
-        return faceValue;
+    public int roll(){
+        this.faceValue = (int)(Math.random()*6) + 1;
+        return this.faceValue;
     }
 
-    public static int getFaceValue(){
-        return faceValue;
+    public int getFaceValue(){
+        return this.faceValue;
     }
 }
