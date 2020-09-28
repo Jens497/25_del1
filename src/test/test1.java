@@ -1,32 +1,38 @@
 package test;
 
 
+import game.Beaker;
+
 public class test1 {
 
-    public static void main(String args[]){
+    public static void main(String[] args) {
         game.game1 game = new game.game1();
-        System.out.println(game.add(1,4));
+        System.out.println(game.add(1, 4));
     }
+
     /*
      * Method intended to simulate 1008 dice rolls.
      * Outputs an array with counted rolls.
      * beaker is a placeholder for the class in game.
      */
-    public int[] simDice (){
-        int[] obs = new int[]{0,0,0,0,0,0,0,0,0,0,0};
-        int a = 0;
-        for (int i = 1; i < 1009; i++){
-            game.beaker.roll();
-            a = game.beaker.getSum();
-            obs[a-2]++;
+    Beaker beaker = new game.Beaker(2);
+
+    public int[] simDice() {
+        int[] obs = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int a;
+        for (int i = 1; i < 1009; i++) {
+            beaker.roll();
+            a = beaker.getSum();
+            obs[a - 2]++;
         }
         return obs;
 
     }
-    public void chiSquare () {
+
+    public void chiSquare() {
         int[] exp = new int[]{28, 56, 84, 112, 140, 168, 140, 112, 84, 56, 28};
         int[] obs = simDice();
-        int a = 0;
+        int a;
         int chSq = 0;
         for (int i = 0; i < 12; i++) {
             a = (exp[i] - obs[i]);

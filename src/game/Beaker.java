@@ -11,19 +11,19 @@ public class Beaker {
     boolean hasRolled;
 
     // Constructor: Takes number of die in beaker as argument
-    Beaker(int n) {
+    public Beaker(int n) {
 
         // Set number of dice
         this.numberOfDie = n;
 
         // Make new instance of die for each number of dice
         for (int i = 0; i < this.numberOfDie; i++) {
-            this.Die[i] = new Die();
+            this.die[i] = new Die();
         }
     }
 
     // Rolls each die in beaker using the roll function
-    void roll() {
+    public void roll() {
 
         // Roll each die
         for (int i = 0; i < this.die.length; i++) {
@@ -35,7 +35,7 @@ public class Beaker {
     }
 
     // Returns the sum of all the face values if dice have been rolled, otherwise returns zero
-    int getSum() {
+    public int getSum() {
 
         // Return zero if dice hasn't been rolled
         if (!hasRolled) {
