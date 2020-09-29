@@ -47,7 +47,7 @@ public class test1 {
         int[] obs = simDice();
         int a;
         double chSq = 0.;
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 11; i++) {
             a = (exp[i] - obs[i]);
             a = a * a;
             chSq += (double) (a)/(double) (exp[i]);
@@ -61,6 +61,19 @@ public class test1 {
         }
         else {
             System.out.println("The test rejects the dice as credible with a significance level of 5%.");
+        }
+        for (int i = 0; i < 2; i++){
+            a = exp[i+12] - obs[i+12];
+            a = a * a;
+            chSq += (double) (a)/(double) (exp[i+12]);
+        }
+        threshold = 3.8415;
+
+        if (threshold > chSq){
+            System.out.println("The test confirms double rolls credible with a significance level of 5%.");
+        }
+        else {
+            System.out.println("The test rejects double rolls credible with a significance level of 5%.");
         }
     }
 }
