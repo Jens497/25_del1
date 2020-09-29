@@ -1,6 +1,6 @@
 package test;
 
-
+import java.lang.*;
 import game.Beaker;
 
 public class test1 {
@@ -10,55 +10,70 @@ public class test1 {
         System.out.println(game.add(1, 4));
     }
 
-    /*
-     * Method intended to simulate 1008 dice rolls.
-     * Outputs an array with counted rolls.
-     * beaker is a placeholder for the class in game.
-     */
     Beaker beaker = new game.Beaker(2);
 
+    /*
+     * Method intended to simulate 1008 dice rolls.
+     * Outputs an array with counted rolls - including number of rolls with identical face values.
+     * Measures an upper bound on average time for 1008 rolls.
+     */
+
     public int[] simDice() {
-        int[] obs = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] obs = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         int a;
+        double time = (double) (System.currentTimeMillis());
         for (int i = 1; i < 1009; i++) {
             beaker.roll();
             a = beaker.getSum();
             obs[a - 2]++;
+            if (beaker.isIdentical()){obs[11]++;}
+            else {obs[12]++;}
         }
+        time = (double) (System.currentTimeMillis()) - time;
+        double perRoll = time/1008.;
+        System.out.println("Upper bound on average time per roll: " + perRoll);
         return obs;
-
     }
 
+    /*
+     *  Calculates a chiSquare sample size to try against the chiSquare distribution with 11 degrees of freedom.
+     *  The chiSquare test concludes if the observed experiment falls within 95% of the possible outcomes.
+     *  For more specifics of this, refer to the project report.
+     *  In other words, the test can be used to measure if the random number generation for the dice is credible.
+     */
+
     public void chiSquare() {
-        int[] exp = new int[]{28, 56, 84, 112, 140, 168, 140, 112, 84, 56, 28};
+        int[] exp = new int[]{28, 56, 84, 112, 140, 168, 140, 112, 84, 56, 28, 168, 840};
         int[] obs = simDice();
         int a;
-        int chSq = 0;
-        for (int i = 0; i < 12; i++) {
+        double chSq = 0.;
+        for (int i = 0; i < 11; i++) {
             a = (exp[i] - obs[i]);
-            chSq += a * a;
+            a = a * a;
+            chSq += (double) (a)/(double) (exp[i]);
         }
         System.out.println("ChiSquared sample = " + chSq);
-        /* Calculate P(X<=chSq), with (2-1)*(11-1)=10 DoF.
-         * Creates a chiSquare sample value to test against the cumulativeProbability
-         * function of the ChiSquare distribution, with 10 degrees of freedom. The
-         * method is intended to determine if the simulation gives a set of outcomes
-         * that is within reason - i.e. that the sample value is in the interval that
-         * represents 95% of outcomes. It is possible that the test determines the
-         * simulation outside this range - this should happen in roughly 5% of cases.
-         */
 
-        /* org.apache.commons.math3.distribution.ChiSquaredDistribution
-        ChiSquaredDistribution chi2 = new ChiSquaredDistribution(10);
-        double prob = chi2.cumulativeProbability(chSq);
-        if (prob >= 0.95){
-            System.out.println("The test concludes that the dice are true with
-            a significance level of 5%.")
-            }
-        else {
-            System.out.println("The test concludes that the dice are not true with
-            a significance level of 5%."
+        double threshold = 21.0261;
+
+        if (threshold > chSq){
+            System.out.println("The test confirms the dice as credible with a significance level of 5%.");
         }
-         */
+        else {
+            System.out.println("The test rejects the dice as credible with a significance level of 5%.");
+        }
+        for (int i = 0; i < 2; i++){
+            a = exp[i+12] - obs[i+12];
+            a = a * a;
+            chSq += (double) (a)/(double) (exp[i+12]);
+        }
+        threshold = 3.8415;
+
+        if (threshold > chSq){
+            System.out.println("The test confirms double rolls credible with a significance level of 5%.");
+        }
+        else {
+            System.out.println("The test rejects double rolls credible with a significance level of 5%.");
+        }
     }
 }
