@@ -19,7 +19,7 @@ public class test1 {
      */
 
     public int[] simDice() {
-        int[] obs = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int[] obs = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         int a;
         double time = (double) (System.currentTimeMillis());
         for (int i = 1; i < 1009; i++) {
@@ -27,6 +27,7 @@ public class test1 {
             a = beaker.getSum();
             obs[a - 2]++;
             if (beaker.isIdentical()){obs[11]++;}
+            else {obs[12]++;}
         }
         time = (double) (System.currentTimeMillis()) - time;
         double perRoll = time/1008.;
@@ -42,17 +43,17 @@ public class test1 {
      */
 
     public void chiSquare() {
-        int[] exp = new int[]{28, 56, 84, 112, 140, 168, 140, 112, 84, 56, 28, 168};
+        int[] exp = new int[]{28, 56, 84, 112, 140, 168, 140, 112, 84, 56, 28, 168, 840};
         int[] obs = simDice();
         int a;
         double chSq = 0.;
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 13; i++) {
             a = (exp[i] - obs[i]);
             chSq += (double) (a)/(double) (exp[i]);
         }
         System.out.println("ChiSquared sample = " + chSq);
 
-        double threshold = 19.6751;
+        double threshold = 21.0261;
 
         if (threshold > chSq){
             System.out.println("The test confirms the dice as credible with a significance level of 5%.");
