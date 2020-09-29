@@ -3,21 +3,21 @@ package game;
 public class Beaker {
 
     // Variables
-    private Die[] die;
+    private Die[] dice;
     private int[] results;
 
-    private boolean hasRolled;
+    private boolean hasRolled = false;
 
     // Constructor: Takes number of die in beaker as argument
     public Beaker(int n) {
 
         // Assign arrays with right length
-        this.die = new Die[n];
+        this.dice = new Die[n];
         this.results = new int[n];
 
         // Make new instance of die for each number of dice
         for (int i = 0; i < n; i++) {
-            this.die[i] = new Die();
+            this.dice[i] = new Die();
         }
     }
 
@@ -25,12 +25,12 @@ public class Beaker {
     public void roll() {
 
         // Roll each die
-        for (int i = 0; i < this.die.length; i++) {
-            this.results[i] = die[i].roll();
+        for (int i = 0; i < this.dice.length; i++) {
+            this.results[i] = this.dice[i].roll();
         }
 
         // Set hasRolled to true
-        hasRolled = true;
+        this.hasRolled = true;
     }
 
     // Returns the sum of all the face values if dice have been rolled, otherwise returns zero
@@ -43,7 +43,7 @@ public class Beaker {
 
         // Sum up all face values
         int sum = 0;
-        for (int result : results) {
+        for (int result : this.results) {
             sum += result;
         }
 
