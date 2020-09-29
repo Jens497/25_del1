@@ -31,6 +31,29 @@ public class Beaker {
 
         // Set hasRolled to true
         this.hasRolled = true;
+
+    }
+
+    // Returns true if all the rolled results are identical, otherwise return false
+    public boolean isIdentical() {
+
+        // Return false if dice hasn't been rolled
+        if (!hasRolled) {
+            return false;
+        }
+
+        // Go over each result starting at #2 and compare it to the one before it
+        for (int i = 1; i < this.results.length; i++) {
+
+            // If the two are not equal, return false
+            if (this.results[i] != this.results[i - 1]) {
+                return false;
+            }
+        }
+
+        // If we have gotten to this point, all the results must be identical; return true
+        return true;
+
     }
 
     // Returns the sum of all the face values if dice have been rolled, otherwise returns zero
