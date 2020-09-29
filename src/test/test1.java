@@ -49,6 +49,7 @@ public class test1 {
         double chSq = 0.;
         for (int i = 0; i < 13; i++) {
             a = (exp[i] - obs[i]);
+            a = a * a;
             chSq += (double) (a)/(double) (exp[i]);
         }
         System.out.println("ChiSquared sample = " + chSq);
