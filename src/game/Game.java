@@ -1,5 +1,6 @@
 package game;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Game {
@@ -76,8 +77,12 @@ public class Game {
                 turn = (turn + 1) % scoreboard.length;
             }
 
-            System.out.println("Input any key to continue");
-            inputs.next();
+            System.out.println("Press enter to continue the game...");
+            try {
+                System.in.read();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
