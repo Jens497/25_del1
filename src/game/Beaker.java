@@ -3,9 +3,7 @@ package game;
 public class Beaker {
 
     // Variables
-    private Die[] dice;
-    private int[] results;
-
+    final private Die[] dice;
     private boolean hasRolled = false;
 
     // Constructor: Takes number of die in beaker as argument
@@ -13,7 +11,6 @@ public class Beaker {
 
         // Assign arrays with right length
         this.dice = new Die[n];
-        this.results = new int[n];
 
         // Make new instance of die for each number of dice
         for (int i = 0; i < n; i++) {
@@ -25,8 +22,8 @@ public class Beaker {
     public void roll() {
 
         // Roll each die
-        for (int i = 0; i < this.dice.length; i++) {
-            this.results[i] = this.dice[i].roll();
+        for (Die die : this.dice) {
+            die.roll();
         }
 
         // Set hasRolled to true
@@ -42,10 +39,10 @@ public class Beaker {
         }
 
         // Go over each result starting at #2 and compare it to the one before it
-        for (int i = 1; i < this.results.length; i++) {
+        for (int i = 1; i < this.dice.length; i++) {
 
             // If the two are not equal, return false
-            if (this.results[i] != this.results[i - 1]) {
+            if (this.dice[i].getFaceValue() != this.dice[i - 1].getFaceValue()) {
                 return false;
             }
         }
@@ -54,9 +51,17 @@ public class Beaker {
         return true;
     }
 
-    // Returns an array of Die classes.
-    public Die[] getDice() {
-        return this.dice;
+    // Returns the face of the dice at index in the array
+    public int getFaceValue(int index) {
+
+        try {
+            return this.dice[index].getFaceValue();
+
+        } catch (Exception e) {
+
+            // If the face value is not defined, or index is out of bounds, return zero
+            return 0;
+        }
     }
 
     // Returns the sum of all the face values if dice have been rolled, otherwise returns zero
@@ -69,8 +74,8 @@ public class Beaker {
 
         // Sum up all face values
         int sum = 0;
-        for (int result : this.results) {
-            sum += result;
+        for (Die die : this.dice) {
+            sum += die.getFaceValue();
         }
 
         // Return sum of face values
