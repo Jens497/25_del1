@@ -38,6 +38,16 @@ public class test1 {
 
         System.out.println("Upper bound on average time per roll: " + perRoll);
         System.out.println("Is this less than 333ms? " + (perRoll < 333.));
+
+
+        /*
+         *  Calculates a chiSquare sample size to try against the chiSquare distribution with 11 degrees of freedom.
+         *  The chiSquare test concludes if the observed experiment falls within 95% of the possible outcomes.
+         *  For more specifics of this, refer to the project report.
+         *  In other words, the test can be used to measure if the random number generation for the dice is credible.
+         *  Take note, that far most of the calculations are using int.
+         */
+
         // Define an array of evenly distributed outcomes.
         int[] exp = new int[]{28, 56, 84, 112, 140, 168, 140, 112, 84, 56, 28, 168, 840};
         // Variable for calculating the chiSquare sample.
