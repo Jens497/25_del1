@@ -2,7 +2,7 @@ package game;
 
 import java.util.Scanner;
 
-public class Game1 {
+public class Game {
     public static void main(String[] args) {
         boolean sixTurn = false, extraTurn = false;
         int a, b, turn = 0;
