@@ -1,33 +1,28 @@
 package game;
 
-public class Player
-{
-    //Variable.
+public class Player {
+    //Variable
     private int PlayerScore;
-    private String PlayerName;
+    final private String PlayerName;
 
-    //Difining Varibles.
-    public Player (String inputPlayerName)
-    {
-        PlayerName =inputPlayerName;
-        PlayerScore =0;
+    //Constructor: Defining variables
+    public Player(String inputPlayerName) {
+        PlayerName = inputPlayerName;
+        PlayerScore = 0;
     }
 
-    //Setting the player score.
-    public void setPlayerScore(int Point)
-    {
+    // Setting the player score
+    public void setPlayerScore(int Point) {
         this.PlayerScore = this.PlayerScore + Point;
     }
 
-    //Getting the player score, then returning it.
-    public int getPlayerScore()
-    {
+    // Getting the player score, then returning it.
+    public int getPlayerScore() {
         return this.PlayerScore;
     }
 
-    //Getting the player name, then returning it.
-    public String getPlayerName()
-    {
+    // Getting the player name, then returning it.
+    public String getPlayerName() {
         return this.PlayerName;
     }
 }
