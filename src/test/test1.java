@@ -49,7 +49,7 @@ public class test1 {
          */
 
         // Define an array of evenly distributed outcomes.
-        int[] exp = new int[]{28, 56, 84, 112, 140, 168, 140, 112, 84, 56, 28, 168, 840};
+        int[] exp = new int[]{28, 56, 84, 112, 140, 168, 140, 112, 84, 56, 28};
         // Variable for calculating the chiSquare sample.
         double chSq = 0.;
         // Calculate $\sum_{i=0}^{10} \frac{(exp_i - obs_i)^2}{(exp_i)}$ - see report.
