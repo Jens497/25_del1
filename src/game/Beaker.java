@@ -54,6 +54,7 @@ public class Beaker {
         return true;
     }
 
+    // Returns an array of Die classes.
     public Die[] getDice() {
         return this.dice;
     }
