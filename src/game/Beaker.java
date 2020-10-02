@@ -31,7 +31,6 @@ public class Beaker {
 
         // Set hasRolled to true
         this.hasRolled = true;
-
     }
 
     // Returns true if all the rolled results are identical, otherwise return false
@@ -53,7 +52,10 @@ public class Beaker {
 
         // If we have gotten to this point, all the results must be identical; return true
         return true;
+    }
 
+    public Die[] getDice() {
+        return this.dice;
     }
 
     // Returns the sum of all the face values if dice have been rolled, otherwise returns zero
